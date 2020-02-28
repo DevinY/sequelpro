@@ -92,6 +92,11 @@
 	if ([encoding isEqualToString:theEncoding] && !encodingUsesLatin1Transport) {
 		return YES;
 	}
+    //強制使用latin1
+    if ([encoding isEqualToString:@"big5"] && encodingUsesLatin1Transport) {
+        [self queryString:[NSString stringWithFormat:@"SET NAMES %@", [@"latin1" mySQLTickQuotedString]]];
+        return YES;
+    }
 
 	// Run a query to set the connection encoding
 	[self queryString:[NSString stringWithFormat:@"SET NAMES %@", [theEncoding mySQLTickQuotedString]]];
