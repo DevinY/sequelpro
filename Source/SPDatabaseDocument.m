@@ -1655,6 +1655,11 @@ static BOOL isOSAtLeast10_14;
 		useLatin1Transport = YES;
 		mysqlEncoding = @"utf8";
 	}
+	
+	if ([mysqlEncoding isEqualToString:@"big5-"]) {
+		useLatin1Transport = YES;
+		mysqlEncoding = @"big5";
+	}
 
 	// Set the connection encoding
 	if (![mySQLConnection setEncoding:mysqlEncoding]) {
@@ -1720,7 +1725,7 @@ static BOOL isOSAtLeast10_14;
 		@"latin5"   : @(SPEncodingLatin5Turkish),
 		@"cp1257"   : @(SPEncodingCP1257WinBaltic),
 		@"cp1251"   : @(SPEncodingCP1251WinCyrillic),
-		@"big5"     : @(SPEncodingBig5Chinese),
+		@"big5-"     : @(SPEncodingBig5Chinese),
 		@"sjis"     : @(SPEncodingShiftJISJapanese),
 		@"ujis"     : @(SPEncodingEUCJPJapanese),
 		@"euckr"    : @(SPEncodingEUCKRKorean),
@@ -1754,7 +1759,7 @@ static BOOL isOSAtLeast10_14;
 									@"latin5",   [NSString stringWithFormat:@"%i", SPEncodingLatin5Turkish],
 									@"cp1257",   [NSString stringWithFormat:@"%i", SPEncodingCP1257WinBaltic],
 									@"cp1251",   [NSString stringWithFormat:@"%i", SPEncodingCP1251WinCyrillic],
-									@"big5",     [NSString stringWithFormat:@"%i", SPEncodingBig5Chinese],
+									@"big5-",     [NSString stringWithFormat:@"%i", SPEncodingBig5Chinese],
 									@"sjis",     [NSString stringWithFormat:@"%i", SPEncodingShiftJISJapanese],
 									@"ujis",     [NSString stringWithFormat:@"%i", SPEncodingEUCJPJapanese],
 									@"euckr",    [NSString stringWithFormat:@"%i", SPEncodingEUCKRKorean],
